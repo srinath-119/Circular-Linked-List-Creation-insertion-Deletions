@@ -4,7 +4,7 @@ struct node
 {
     int data;
     struct node *next
-} * last;
+    } * last;
 void create(struct node *);
 void display(struct node *);
 struct node *insertAtBeginning(struct node *);
@@ -19,11 +19,54 @@ int main()
 {
     struct node *head;
     head = (struct node *)malloc(sizeof(struct node));
-    create(head);
-    display(head);
-    int x=nodeCount(head);
-    printf("count: %d",x);
+    int option;
+    printf("Enter 1 to Create a Circular Linked List\n");
+    printf("Enter 2 to display the Circular Linked List\n");
+    printf("Enter 3 to Insert a node at beginning\n");
+    printf ("Enter 4 to Insert a node at a given position\n");
+    printf("Enter 5 to Innsert a node at End\n");
+    printf("Enter 6 to Delete First Node\n");
+    printf("Enter 7 to Delete a node at given position\n");
+    printf("Enter 8 to Delete Last Node\n");
+    printf("Enter 9 to get the count of nodes\n");
+    printf("Enter 10 to exit\n");
+    do {
+        printf("\nEnter your choice: ");
+        scanf("%d",&option);
 
+        switch(option) {
+        case 1:
+            create(head);
+            break;
+        case 2:
+            display(head);
+            break;
+        case 3:
+            head=insertAtBeginning(head);
+            break;
+        case 4:
+            head=insertAtPosition(head);
+            break;
+        case 5:
+            head=insertAtEnd(head);
+            break;
+        case 6:
+            head=deleteFirstNode(head);
+        case 7:
+            head=deleteAtPosition(head);
+            break;
+        case 8:
+            head=deleteLastNode(head);
+            break;
+        case 9:
+            printf("The count is %d: ",nodeCount(head));
+            printf("\n");
+            break;
+        
+
+
+        }
+    }while(option!=10);
     return 0;
 }
 //create
@@ -92,7 +135,7 @@ struct node *insertAtPosition(struct node *head)
     scanf("%d", &pos);
     struct node *newnode, *temp = head;
     newnode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the data: ");
+    printf("Enter the data to insert at given position: ");
     scanf("%d", &data);
     while (i != pos - 1)
     {
@@ -108,7 +151,7 @@ struct node *insertAtEnd(struct node *head)
 {
     struct node *temp = head, *newnode;
     newnode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the data: ");
+    printf("Enter the data to insert at end: ");
     int data;
     scanf("%d", &data);
     newnode->data = data;
@@ -154,14 +197,14 @@ struct node *deleteLastNode(struct node *head)
     free(ptr);
     return head;
 }
-int nodeCount(struct node* head){
+int nodeCount(struct node* head) {
     int i=0;
     struct node *temp=head;
     do
     {
         i++;
-     temp=temp->next;
+        temp=temp->next;
     } while (temp!=head);
-    
- return i;
+
+    return i;
 }

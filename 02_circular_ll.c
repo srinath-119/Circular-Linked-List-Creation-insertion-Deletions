@@ -52,6 +52,7 @@ int main()
             break;
         case 6:
             head=deleteFirstNode(head);
+                break;
         case 7:
             head=deleteAtPosition(head);
             break;
